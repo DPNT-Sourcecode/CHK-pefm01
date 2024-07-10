@@ -67,7 +67,7 @@ def apply_promotions(basket: dict, bill: int) -> int:
     free_promo = json.loads(free_products)  # loading free products
     basket_for_discounts = basket
     for item in basket:
-        bill = apply_discounts(actual_promotions, item, bill, basket_for_discounts)
+        bill, basket_for_discounts = apply_discounts(actual_promotions, item, bill, basket_for_discounts)
         bill = apply_free_products(free_promo, item, bill, basket)
     return bill
 
@@ -79,7 +79,7 @@ def apply_discounts(actual_promotions: json, item: object, bill: int, basket):
             bill -= int(basket[item] / promo['amount']) * promo['discount']
             basket[item] -= int(basket[item] / promo['amount'])
             break
-    return bill
+    return bill, basket
 
 
 def apply_free_products(free_promo: json, item: object, bill: int, basket: dict) -> int:
@@ -98,7 +98,10 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
     return bill
 
 
-# if __name__ == '__main__':
-#     print(checkout("AAAAA")) # 200
-#     print(checkout("AAAAAA")) # 250
-#     print(checkout("AAAAAAA")) # 300
+if __name__ == '__main__':
+    print(checkout("AAAAA")) # 200
+    print(checkout("AAAAAA")) # 250
+    print(checkout("AAAAAAA")) # 300
+    print(checkout("AAA"))  # 130
+    print(checkout("AAAA"))  # 180
+    print(checkout("AAAAAAAA"))  # 330
