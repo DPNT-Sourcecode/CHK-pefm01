@@ -41,7 +41,7 @@ def count_basket(basket: dict) -> int:
     for item in basket:
         try:
             bill += sku_prices[item] * basket[item]  # increasing bill for product_price * ammount in baskter
-        except:
+        except KeyError:
             print(f"product that you added to the list: {item} is not for sale. Please put it away.")
     return apply_promotions(basket, bill)
 
@@ -55,6 +55,7 @@ def apply_promotions(basket: dict, bill: int) -> int:
                 bill -= int(basket[item] / promo['amount']) * promo['discount']
                 break
     return bill
+
 
 
 
