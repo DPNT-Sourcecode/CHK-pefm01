@@ -55,8 +55,3 @@ def apply_promotions(basket: dict, bill: int) -> int:
                 bill -= int(basket[item] / promo['amount']) * promo['discount']
                 break
     return bill
-
-
-
-
-
