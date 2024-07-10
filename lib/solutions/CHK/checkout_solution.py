@@ -9,6 +9,3 @@ def checkout(skus: str) -> int:
         if product in basket.keys():
             basket[product] += 1
     raise NotImplementedError()
-
-
-
