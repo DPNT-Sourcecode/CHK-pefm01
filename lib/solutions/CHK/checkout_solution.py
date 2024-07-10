@@ -40,5 +40,6 @@ def count_basket(basket: dict) -> int:
 
 
 def apply_promotions(basket: dict, bill: int) -> int:
+    actual_promotions = json.loads(promotions)
     for item in basket:
         if pro
