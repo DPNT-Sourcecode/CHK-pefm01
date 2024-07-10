@@ -9,7 +9,7 @@ sku_prices = {
     'D': 15
 }
 
-promotions = """"
+promotions = """
 [
     {
         "sku": "A",
@@ -55,5 +55,3 @@ def apply_promotions(basket: dict, bill: int) -> int:
 
 if __name__ == '__main__':
     checkout("AABCD")
-
-
