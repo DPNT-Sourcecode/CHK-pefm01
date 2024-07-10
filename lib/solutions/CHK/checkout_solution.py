@@ -14,8 +14,6 @@ promotions = {
     '2B': 15
 }
 
-bill = 0
-
 
 def checkout(skus: str) -> int:
     products = list(str)  # converting to the list to easier operate on it
@@ -28,5 +26,9 @@ def checkout(skus: str) -> int:
 
 
 def count_basket(basket: dict) -> int:
+    bill = 0
     for item in basket:
         bill += sku_prices[item]*basket[item]
+        
+
+def apply_promotions(basket: dict, bill: int) -> int:
