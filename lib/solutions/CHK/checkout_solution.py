@@ -1,6 +1,6 @@
-
 # noinspection PyUnusedLocal
 # skus = unicode string
+import json
 
 sku_prices = {
     'A': 50,
@@ -9,10 +9,18 @@ sku_prices = {
     'D': 15
 }
 
-promotions = {
-    '3A': 20,
-    '2B': 15
-}
+promotions = [
+    {
+        "sku": "A",
+        "amount": 3,
+        "discount": 20
+    },
+    {
+        "sku": "B",
+        "amount": 2,
+        "discount": 15
+    }
+]
 
 
 def checkout(skus: str) -> int:
@@ -28,7 +36,9 @@ def checkout(skus: str) -> int:
 def count_basket(basket: dict) -> int:
     bill = 0
     for item in basket:
-        bill += sku_prices[item]*basket[item]
-        
+        bill += sku_prices[item] * basket[item]
+
 
 def apply_promotions(basket: dict, bill: int) -> int:
+    for item in basket:
+        if pro
