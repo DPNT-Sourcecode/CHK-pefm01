@@ -30,16 +30,18 @@ def checkout(skus: str) -> int:
     basket = {}
     for product in products:
         if product in basket.keys():
-            basket[product] += 1
+            basket[product] += 1  # product exists in dic, incrementing
         else:
-            basket[product] = 1
+            basket[product] = 1  # product does not exists, adding
     return count_basket(basket)
 
 
 def count_basket(basket: dict) -> int:
     bill = 0
     for item in basket:
-        bill += sku_prices[item] * basket[item]
+        try:
+            bill += sku_prices[item] * basket[item]  # increasing bill for product_price * ammount in baskter
+        
     return apply_promotions(basket, bill)
 
 
@@ -48,11 +50,9 @@ def apply_promotions(basket: dict, bill: int) -> int:
     for item in basket:
         for promo in actual_promotions:
             if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
+                # if int is more than 0, it will apply promo to the basket
                 bill -= int(basket[item]/promo['amount']) * promo['discount']
                 break
     return bill
 
-
-if __name__ == '__main__':
-    print(checkout("AAABBCD"))
 
