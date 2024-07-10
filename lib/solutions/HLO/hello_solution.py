@@ -1,7 +1,5 @@
-
-
 # noinspection PyUnusedLocal
 # friend_name = unicode string
-def hello(friend_name: str)-> str:
-    return 
-    raise NotImplementedError()
+def hello(friend_name: str) -> str:
+    return f"Hello, {friend_name}. Nice to see you today!"
+
