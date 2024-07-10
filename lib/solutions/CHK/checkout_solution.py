@@ -26,6 +26,7 @@ def checkout(skus: str) -> int:
         else:
             basket[product] = 1
 
+
 def count_basket(basket: dict) -> int:
     for item in basket:
-        bill += sku_prices[item]*item
+        bill += sku_prices[item]*basket[item]
