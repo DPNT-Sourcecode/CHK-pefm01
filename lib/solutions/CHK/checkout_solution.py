@@ -6,7 +6,8 @@ sku_prices = {
     'A': 50,
     'B': 30,
     'C': 20,
-    'D': 15
+    'D': 15,
+    'E': 40
 }
 
 promotions = """
@@ -20,6 +21,16 @@ promotions = """
         "sku": "B",
         "amount": 2,
         "discount": 15
+    }
+]
+"""
+
+free_products = """
+[
+    {
+        "sku": "E",
+        "amount": 2,
+        "free_product": B
     }
 ]
 """
@@ -48,10 +59,26 @@ def count_basket(basket: dict) -> int:
 
 def apply_promotions(basket: dict, bill: int) -> int:
     actual_promotions = json.loads(promotions)  # loading current promotions
+    free_promo = json.loads(free_products)  # loading free products
     for item in basket:
-        for promo in actual_promotions:
-            if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
-                # if int is more than 0, it will apply promo to the basket
-                bill -= int(basket[item] / promo['amount']) * promo['discount']
-                break
+        bill = apply_discounts(actual_promotions, item, bill, basket)
+        bill = apply_free_products(free_promo, item, bill, basket)
     return bill
+
+
+def apply_discounts(actual_promotions: json, item: object, bill: int, basket):
+    for promo in actual_promotions:
+        if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
+            # if int is more than 0, it will apply promo to the basket
+            bill -= int(basket[item] / promo['amount']) * promo['discount']
+            break
+    return bill
+
+
+def apply_free_products(free_promo: json, item: object,  bill: int, basket: dict) -> int:
+    for promo in free_promo:
+        if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
+            promo_counter = int(basket[item] / promo['amount'])
+            products_to_discount = basket[promo['free_product']]
+            while promo_counter > 0
+
