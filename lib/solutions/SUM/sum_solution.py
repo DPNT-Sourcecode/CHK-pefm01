@@ -6,6 +6,3 @@ def compute(x: int, y: int) -> int:
     else:
         raise ValueError('Both values needs to be in range 0-100')
 
-
-
-
