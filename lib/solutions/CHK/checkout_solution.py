@@ -30,7 +30,7 @@ free_products = """
     {
         "sku": "E",
         "amount": 2,
-        "free_product": B
+        "free_product": "B"
     }
 ]
 """
@@ -53,7 +53,7 @@ def count_basket(basket: dict) -> int:
         try:
             bill += sku_prices[item] * basket[item]  # increasing bill for product_price * ammount in baskter
         except KeyError:
-            return(-1)
+            return (-1)
     return apply_promotions(basket, bill)
 
 
@@ -75,10 +75,19 @@ def apply_discounts(actual_promotions: json, item: object, bill: int, basket):
     return bill
 
 
-def apply_free_products(free_promo: json, item: object,  bill: int, basket: dict) -> int:
+def apply_free_products(free_promo: json, item: object, bill: int, basket: dict) -> int:
     for promo in free_promo:
         if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
-            promo_counter = int(basket[item] / promo['amount'])
-            products_to_discount = basket[promo['free_product']]
-            while promo_counter > 0
+            promo_counter = int(basket[item] / promo['amount'])  # number of promotion that needs to be applied
+            products_to_discount = basket[promo['free_product']]  # number of products that can be free
+            while promo_counter > 0:
+                if products_to_discount > 0:
+                    bill -= sku_prices[promo['free_product']]
+                    products_to_discount -= 1
+                promo_counter -= 1
+    return bill
+
+
+if __name__ == '__main__':
+    print(checkout("AAABCDEEEE"))
 
