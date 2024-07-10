@@ -87,7 +87,3 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
                 promo_counter -= 1
     return bill
 
-
-if __name__ == '__main__':
-    print(checkout("AAABCDEEEE"))
-
