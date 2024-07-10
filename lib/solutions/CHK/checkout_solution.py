@@ -48,10 +48,11 @@ def apply_promotions(basket: dict, bill: int) -> int:
     for item in basket:
         for promo in actual_promotions:
             if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
-                bill -= (basket[item] % promo['amount']) * promo['discount']
+                bill -= int(basket[item]/promo['amount']) * promo['discount']
                 break
     return bill
 
 
 if __name__ == '__main__':
-    checkout("AABCD")
+    print(checkout("AAABBCD"))
+
