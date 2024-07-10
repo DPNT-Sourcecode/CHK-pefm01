@@ -79,12 +79,15 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
     for promo in free_promo:
         if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
             promo_counter = int(basket[item] / promo['amount'])  # number of promotion that needs to be applied
-            products_to_discount = basket[promo['free_product']]  # number of products that can be free
-            while promo_counter > 0:
-                if products_to_discount > 0:
-                    bill -= sku_prices[promo['free_product']]
-                    products_to_discount -= 1
-                promo_counter -= 1
+            try:
+                products_to_discount = basket[promo['free_product']]  # number of products that can be free
+                while promo_counter > 0:
+                    if products_to_discount > 0:
+                        bill -= sku_prices[promo['free_product']]
+                        products_to_discount -= 1
+                    promo_counter -= 1
+            except KeyError:
+                print("Client has no product for discount")
     return bill
 
 
