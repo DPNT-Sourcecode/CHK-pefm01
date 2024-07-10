@@ -99,9 +99,9 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
 
 
 if __name__ == '__main__':
-    # print(checkout("AAAAA")) # 200
-    # print(checkout("AAAAAA")) # 250
-    # print(checkout("AAAAAAA")) # 300
+    print(checkout("AAAAA")) # 200
+    print(checkout("AAAAAA")) # 250
+    print(checkout("AAAAAAA")) # 300
     print(checkout("AAA"))  # 130
     print(checkout("AAAA"))  # 180
-    # print(checkout("AAAAAAAA"))  # 330
+    print(checkout("AAAAAAAA"))  # 330
