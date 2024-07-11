@@ -221,8 +221,3 @@ if __name__ == '__main__':
     # print(checkout("FFF"))  # 20
     # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
-
-
-
-
-
