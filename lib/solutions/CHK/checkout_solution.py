@@ -77,9 +77,11 @@ def apply_discounts(actual_promotions: json, item: object, bill: int, basket_for
     for promo in actual_promotions:
         if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
             # if int is more than 0, it will apply promo to the basket
-            bill -= int(basket_for_discounts[item] / promo['amount']) * promo['discount']
-            if int(basket_for_discounts[item] / promo['amount']) * promo['discount'] > 0:
-                basket_for_discounts[item] -= promo['amount']
+            promo_counter = int(basket_for_discounts[item] / promo['amount'])
+            if promo_counter > 0:
+                basket_for_discounts[item] -= promo['amount'] * promo_counter
+                bill -= promo_counter * promo['discount']
+
     return bill, basket_for_discounts
 
 
@@ -107,8 +109,9 @@ if __name__ == '__main__':
     # print(checkout("AAA"))  # 130
     # print(checkout("AAAA"))  # 180
     # print(checkout("AAAAAAAA"))  # 330
-    print(checkout("AAAABBEEE"))  # 330
+    # print(checkout("AAAABBEEE"))  # 330
     print(checkout("AAAAAAAAAA"))  # 400
-    print(checkout("EEEEBB")) # 160
-    print(checkout("BEBEEE")) # 160
+    # print(checkout("EEEEBB")) # 160
+    # print(checkout("BEBEEE")) # 160
+
 
