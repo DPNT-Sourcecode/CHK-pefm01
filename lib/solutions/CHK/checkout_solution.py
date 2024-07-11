@@ -93,7 +93,7 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
                     if products_to_discount > 0:
                         bill -= sku_prices[promo['free_product']]
                         products_to_discount -= 1
-                        basket[item] -= 1
+                        basket[promo['free_product']] -= 1
                     promo_counter -= 1
             except KeyError:
                 print("Client has no product for discount")
@@ -111,3 +111,4 @@ if __name__ == '__main__':
     print(checkout("AAAAAAAAAA"))  # 400
     print(checkout("EEEEBB")) # 160
     print(checkout("BEBEEE")) # 160
+
