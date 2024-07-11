@@ -47,7 +47,3 @@ class TestChk():
 
     def test_chk_apply_promotion(selfs):
         assert apply_promotions({'A': 4, 'B': 2, 'E': 3}, 365) == 315
-
-
-
-

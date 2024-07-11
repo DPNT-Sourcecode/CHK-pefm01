@@ -124,4 +124,3 @@ if __name__ == '__main__':
     print(checkout("FF"))  # 20
     print(checkout("FFF"))  # 20
     print(checkout("FFFF"))  # 30
-
