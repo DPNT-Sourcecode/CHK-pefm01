@@ -8,11 +8,66 @@ sku_prices = {
     'C': 20,
     'D': 15,
     'E': 40,
-    'F': 10
+    'F': 10,
+    'G': 20,
+    'H': 10,
+    "I": 35,
+    "J": 60,
+    "K": 80,
+    "L": 90,
+    "M": 15,
+    "N": 40,
+    "O": 10,
+    "P": 50,
+    "Q": 30,
+    "R": 50,
+    "S": 30,
+    "T": 20,
+    "U": 40,
+    "V": 50,
+    "W": 20,
+    "X": 90,
+    "Y": 10,
+    "Z": 50
 }
 
 promotions = """
 [
+  {
+        "sku": "V",
+        "amount": 3,
+        "discount": 20
+},
+  {
+        "sku": "V",
+        "amount": 2,
+        "discount": 10
+},
+{
+        "sku": "Q",
+        "amount": 3,
+        "discount": 10
+},
+{
+        "sku": "P",
+        "amount": 5,
+        "discount": 50
+},
+{
+        "sku": "K",
+        "amount": 2,
+        "discount": 10
+    },
+    {
+        "sku": "H",
+        "amount": 10,
+        "discount": 20
+    },
+    {
+        "sku": "H",
+        "amount": 5,
+        "discount": 5
+    },
     {
         "sku": "A",
         "amount": 5,
@@ -33,6 +88,21 @@ promotions = """
 
 free_products = """
 [
+{
+        "sku": "U",
+        "amount": 3,
+        "free_product": "U"
+    },
+{
+        "sku": "R",
+        "amount": 3,
+        "free_product": "Q"
+    },
+{
+        "sku": "N",
+        "amount": 3,
+        "free_product": "M"
+    },
     {
         "sku": "E",
         "amount": 2,
@@ -124,3 +194,4 @@ if __name__ == '__main__':
     print(checkout("FF"))  # 20
     print(checkout("FFF"))  # 20
     print(checkout("FFFF"))  # 30
+
