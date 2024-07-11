@@ -7,5 +7,6 @@ class TestChk():
         assert count_basket({'A': 4, 'B': 2, 'E': 3}) == 315
 
     def test_chk_apply_promotion(selfs):
-        assert apply_promotions()
+        assert apply_promotions({'A': 4, 'B': 2, 'E': 3}) == 315
+
 
