@@ -97,9 +97,9 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
             promo_counter = int(basket[item] / promo['amount'])  # number of promotion that needs to be applied
             try:
                 products_to_discount = basket[promo['free_product']]  # number of products that can be free
+                if promo['free_product'] == promo['sku']:
+                    promo_counter = int(basket[item] / (promo['amount'] + 1))
                 while promo_counter > 0:
-                    if promo['free_product'] == promo['sku']:
-                        promo_counter = int(basket[item] / (promo['amount']+1))
                     if products_to_discount > 0:
                         bill -= sku_prices[promo['free_product']]
                         products_to_discount -= 1
@@ -111,17 +111,17 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
 
 
 if __name__ == '__main__':
-    print(checkout("AAAAA")) # 200
-    print(checkout("AAAAAA")) # 250
-    print(checkout("AAAAAAA")) # 300
+    print(checkout("AAAAA"))  # 200
+    print(checkout("AAAAAA"))  # 250
+    print(checkout("AAAAAAA"))  # 300
     print(checkout("AAA"))  # 130
     print(checkout("AAAA"))  # 180
     print(checkout("AAAAAAAA"))  # 330
     print(checkout("AAAABBEEE"))  # 330
     print(checkout("AAAAAAAAAA"))  # 400
-    print(checkout("EEEEBB")) # 160
-    print(checkout("BEBEEE")) # 160
-    print(checkout("FF")) # 20
-    print(checkout("FFF")) # 20
-    print(checkout("FFFF")) # 30
+    print(checkout("EEEEBB"))  # 160
+    print(checkout("BEBEEE"))  # 160
+    print(checkout("FF"))  # 20
+    print(checkout("FFF"))  # 20
+    print(checkout("FFFF"))  # 30
 
