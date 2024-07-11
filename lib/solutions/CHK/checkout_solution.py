@@ -210,11 +210,13 @@ def check_group_discounts(skus: str):
         if count >= group['count']:
             # adding to the bill price of the group
             bill += int(count/group['count']) * group['price']
+            removed_product =''
             # removing from the list of products that are in the group.
             for i in range(int(count/group['count']) * group['count']):
                 for product in ordered_sku_with_prices:
                     if product[0] in group['list']:
                         ordered_sku_with_prices.remove(product)
+                        removed_product += product[0]
             skus = ''
             # creating string of products that are not in the group or not in discount
             for item in ordered_sku_with_prices:
@@ -240,4 +242,5 @@ if __name__ == '__main__':
     print(checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"))  # 1602
     print(checkout("LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH"))  # 1602
     print(checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHKKVVVBBNNNMFFFQQQVVHHHHHSTX"))  # 1655
+
 
