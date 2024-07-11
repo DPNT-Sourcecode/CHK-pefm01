@@ -197,7 +197,9 @@ def check_group_discounts(skus: str):
     sku_with_prices = []
     for item in skus:
         if item in sku_prices:
+            # creating list of tuples with product and price
             sku_with_prices.append((item, sku_prices[item]))
+    # sorting list of tuples by price
     ordered_sku_with_prices = sorted(sku_with_prices, key=lambda x: x[1], reverse=True)
 
     for group in group_discounts_load:
@@ -206,30 +208,33 @@ def check_group_discounts(skus: str):
             if product[0] in group['list']:
                 count += 1
         if count >= group['count']:
-            charger = int(count/group['count']) * group['price']
-            bill += charger
+            # adding to the bill price of the group
+            bill += int(count/group['count']) * group['price']
+            # removing from the list of products that are in the group.
             return_list = ordered_sku_with_prices[int(count/group['count']) * group['count']:]
             skus = ''
+            # creating string of products that are not in the group or not in discount
             for item in return_list:
                 skus += item[0]
         return bill, skus
 
 
 if __name__ == '__main__':
-    # print(checkout("AAAAA"))  # 200
-    # print(checkout("AAAAAA"))  # 250
-    # print(checkout("AAAAAAA"))  # 300
-    # print(checkout("AAA"))  # 130
-    # print(checkout("AAAA"))  # 180
-    # print(checkout("AAAAAAAA"))  # 330
-    # print(checkout("AAAABBEEE"))  # 330
-    # print(checkout("AAAAAAAAAA"))  # 400
-    # print(checkout("EEEEBB"))  # 160
-    # print(checkout("BEBEEE"))  # 160
-    # print(checkout("FF"))  # 20
-    # print(checkout("FFF"))  # 20
-    # print(checkout("FFFF"))  # 30
+    print(checkout("AAAAA"))  # 200
+    print(checkout("AAAAAA"))  # 250
+    print(checkout("AAAAAAA"))  # 300
+    print(checkout("AAA"))  # 130
+    print(checkout("AAAA"))  # 180
+    print(checkout("AAAAAAAA"))  # 330
+    print(checkout("AAAABBEEE"))  # 330
+    print(checkout("AAAAAAAAAA"))  # 400
+    print(checkout("EEEEBB"))  # 160
+    print(checkout("BEBEEE"))  # 160
+    print(checkout("FF"))  # 20
+    print(checkout("FFF"))  # 20
+    print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
 
 
 
