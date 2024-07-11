@@ -129,8 +129,8 @@ group_discounts = """
 
 
 def checkout(skus: str) -> int:
+    bill, skus = check_group_discounts(skus)
     products = list(skus)  # converting to the list to easier operate on it
-    bill = check_group_discounts(skus)
     basket = {}
     for product in products:
         if product in basket.keys():
@@ -210,6 +210,7 @@ def check_group_discounts(skus: str):
             charger = int(count/group['count']) * group['price']
             bill += charger
             return_list = ordered_sku_with_prices[int(count/group['count']) * group['count']:]
+            skus = ''
             for item in return_list:
                 skus += item[0]
         return bill, skus
@@ -230,6 +231,7 @@ if __name__ == '__main__':
     # print(checkout("FFF"))  # 20
     # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
 
 
 
