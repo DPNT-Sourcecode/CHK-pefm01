@@ -72,14 +72,14 @@ def apply_promotions(basket: dict, bill: int) -> int:
     return bill
 
 
-def apply_discounts(actual_promotions: json, item: object, bill: int, basket):
+def apply_discounts(actual_promotions: json, item: object, bill: int, basket_for_discounts):
     for promo in actual_promotions:
         if promo['sku'] == item:  # if current object is in promotion we need to apply the discount
             # if int is more than 0, it will apply promo to the basket
-            bill -= int(basket[item] / promo['amount']) * promo['discount']
-            if int(basket[item] / promo['amount']) * promo['discount'] > 0:
-                basket[item] -= promo['amount']
-    return bill, basket
+            bill -= int(basket_for_discounts[item] / promo['amount']) * promo['discount']
+            if int(basket_for_discounts[item] / promo['amount']) * promo['discount'] > 0:
+                basket_for_discounts[item] -= promo['amount']
+    return bill, basket_for_discounts
 
 
 def apply_free_products(free_promo: json, item: object, bill: int, basket: dict) -> int:
