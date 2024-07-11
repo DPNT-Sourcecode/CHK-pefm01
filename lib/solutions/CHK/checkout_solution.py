@@ -1,6 +1,7 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 import json
+from collections import OrderedDict
 
 sku_prices = {
     'A': 50,
@@ -129,18 +130,17 @@ group_discounts = """
 
 def checkout(skus: str) -> int:
     products = list(skus)  # converting to the list to easier operate on it
+    bill = check_group_discounts(skus)
     basket = {}
     for product in products:
         if product in basket.keys():
             basket[product] += 1  # product exists in dic, incrementing
         else:
             basket[product] = 1  # product does not exists, adding
-    return count_basket(basket)
+    return count_basket(basket, bill)
 
 
-def count_basket(basket: dict) -> int:
-    bill = 0
-    check_group_discounts(basket)
+def count_basket(basket: dict, bill) -> int:
     for item in basket:
         try:
             bill += sku_prices[item] * basket[item]  # increasing bill for product_price * ammount in baskter
@@ -194,7 +194,7 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
 def check_group_discounts(basket: dict):
     group_discounts_load = json.loads(group_discounts)
     for group in group_discounts_load:
-        for item in group['list']:
+        ordered_pricing = OrderedDict(sku_prices)
 
     return
 
@@ -213,4 +213,5 @@ if __name__ == '__main__':
     print(checkout("FF"))  # 20
     print(checkout("FFF"))  # 20
     print(checkout("FFFF"))  # 30
+
 
