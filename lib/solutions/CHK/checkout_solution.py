@@ -194,7 +194,6 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
 def check_group_discounts(skus: str):
     group_discounts_load = json.loads(group_discounts)
     bill = 0
-    ordered_pricing = dict(sorted(sku_prices.items(), key=lambda x: x[1], reverse=True))
     sku_with_prices = []
     for item in skus:
         if item in sku_prices:
@@ -204,7 +203,7 @@ def check_group_discounts(skus: str):
     for group in group_discounts_load:
         count = 0
         for product in ordered_sku_with_prices:
-            if product in ordered_sku_with_prices:
+            if product in group['list']:
                 count += 1
         if count >= group['count']:
             charger = int(count/group['count']) * group['price']
@@ -217,20 +216,21 @@ def check_group_discounts(skus: str):
 
 
 if __name__ == '__main__':
-    # print(checkout("AAAAA"))  # 200
-    # print(checkout("AAAAAA"))  # 250
-    # print(checkout("AAAAAAA"))  # 300
-    # print(checkout("AAA"))  # 130
-    # print(checkout("AAAA"))  # 180
-    # print(checkout("AAAAAAAA"))  # 330
-    # print(checkout("AAAABBEEE"))  # 330
-    # print(checkout("AAAAAAAAAA"))  # 400
-    # print(checkout("EEEEBB"))  # 160
-    # print(checkout("BEBEEE"))  # 160
-    # print(checkout("FF"))  # 20
-    # print(checkout("FFF"))  # 20
-    # print(checkout("FFFF"))  # 30
+    print(checkout("AAAAA"))  # 200
+    print(checkout("AAAAAA"))  # 250
+    print(checkout("AAAAAAA"))  # 300
+    print(checkout("AAA"))  # 130
+    print(checkout("AAAA"))  # 180
+    print(checkout("AAAAAAAA"))  # 330
+    print(checkout("AAAABBEEE"))  # 330
+    print(checkout("AAAAAAAAAA"))  # 400
+    print(checkout("EEEEBB"))  # 160
+    print(checkout("BEBEEE"))  # 160
+    print(checkout("FF"))  # 20
+    print(checkout("FFF"))  # 20
+    print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
 
 
 
