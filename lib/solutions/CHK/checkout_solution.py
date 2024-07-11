@@ -194,8 +194,7 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
 def check_group_discounts(basket: dict):
     group_discounts_load = json.loads(group_discounts)
     for group in group_discounts_load:
-        ordered_pricing = OrderedDict(sku_prices)
-
+        ordered_pricing = sorted(sku_prices.items(), key=lambda x: x[1], reverse=True)
     return
 
 
@@ -213,5 +212,6 @@ if __name__ == '__main__':
     print(checkout("FF"))  # 20
     print(checkout("FFF"))  # 20
     print(checkout("FFFF"))  # 30
+
 
 
