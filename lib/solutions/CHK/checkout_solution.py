@@ -13,7 +13,7 @@ sku_prices = {
     'H': 10,
     "I": 35,
     "J": 60,
-    "K": 80,
+    "K": 70,
     "L": 90,
     "M": 15,
     "N": 40,
@@ -21,14 +21,14 @@ sku_prices = {
     "P": 50,
     "Q": 30,
     "R": 50,
-    "S": 30,
+    "S": 20,
     "T": 20,
     "U": 40,
     "V": 50,
     "W": 20,
-    "X": 90,
-    "Y": 10,
-    "Z": 50
+    "X": 17,
+    "Y": 20,
+    "Z": 21
 }
 
 promotions = """
@@ -56,7 +56,7 @@ promotions = """
 {
         "sku": "K",
         "amount": 2,
-        "discount": 10
+        "discount": 20
     },
     {
         "sku": "H",
@@ -68,6 +68,11 @@ promotions = """
         "amount": 5,
         "discount": 5
     },
+        {
+        "sku": "B",
+        "amount": 2,
+        "discount": 15
+    },
     {
         "sku": "A",
         "amount": 5,
@@ -77,11 +82,6 @@ promotions = """
         "sku": "A",
         "amount": 3,
         "discount": 20
-    },
-    {
-        "sku": "B",
-        "amount": 2,
-        "discount": 15
     }
 ]
 """
@@ -116,6 +116,16 @@ free_products = """
 ]
 """
 
+group_discounts = """
+[
+    { 
+        "list": ["S", "T", "X", "Y", "Z"], 
+        "price": 45,
+         "count": 3
+    }
+]
+"""
+
 
 def checkout(skus: str) -> int:
     products = list(skus)  # converting to the list to easier operate on it
@@ -130,6 +140,7 @@ def checkout(skus: str) -> int:
 
 def count_basket(basket: dict) -> int:
     bill = 0
+    check_group_discounts(basket)
     for item in basket:
         try:
             bill += sku_prices[item] * basket[item]  # increasing bill for product_price * ammount in baskter
@@ -180,6 +191,14 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
     return bill
 
 
+def check_group_discounts(basket: dict):
+    group_discounts_load = json.loads(group_discounts)
+    for group in group_discounts_load:
+        for item in group['list']:
+
+    return
+
+
 if __name__ == '__main__':
     print(checkout("AAAAA"))  # 200
     print(checkout("AAAAAA"))  # 250
@@ -194,3 +213,4 @@ if __name__ == '__main__':
     print(checkout("FF"))  # 20
     print(checkout("FFF"))  # 20
     print(checkout("FFFF"))  # 30
+
