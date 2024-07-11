@@ -203,7 +203,7 @@ def check_group_discounts(skus: str):
     for group in group_discounts_load:
         count = 0
         for product in ordered_sku_with_prices:
-            if product in group['list']:
+            if product[0] in group['list']:
                 count += 1
         if count >= group['count']:
             charger = int(count/group['count']) * group['price']
@@ -230,6 +230,7 @@ if __name__ == '__main__':
     # print(checkout("FFF"))  # 20
     # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
 
 
 
