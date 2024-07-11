@@ -216,20 +216,21 @@ def check_group_discounts(skus: str):
 
 
 if __name__ == '__main__':
-    print(checkout("AAAAA"))  # 200
-    print(checkout("AAAAAA"))  # 250
-    print(checkout("AAAAAAA"))  # 300
-    print(checkout("AAA"))  # 130
-    print(checkout("AAAA"))  # 180
-    print(checkout("AAAAAAAA"))  # 330
-    print(checkout("AAAABBEEE"))  # 330
-    print(checkout("AAAAAAAAAA"))  # 400
-    print(checkout("EEEEBB"))  # 160
-    print(checkout("BEBEEE"))  # 160
-    print(checkout("FF"))  # 20
-    print(checkout("FFF"))  # 20
-    print(checkout("FFFF"))  # 30
+    # print(checkout("AAAAA"))  # 200
+    # print(checkout("AAAAAA"))  # 250
+    # print(checkout("AAAAAAA"))  # 300
+    # print(checkout("AAA"))  # 130
+    # print(checkout("AAAA"))  # 180
+    # print(checkout("AAAAAAAA"))  # 330
+    # print(checkout("AAAABBEEE"))  # 330
+    # print(checkout("AAAAAAAAAA"))  # 400
+    # print(checkout("EEEEBB"))  # 160
+    # print(checkout("BEBEEE"))  # 160
+    # print(checkout("FF"))  # 20
+    # print(checkout("FFF"))  # 20
+    # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
 
 
 
