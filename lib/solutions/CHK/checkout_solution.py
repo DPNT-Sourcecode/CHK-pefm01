@@ -195,7 +195,7 @@ def check_group_discounts(skus: str):
     group_discounts_load = json.loads(group_discounts)
     bill = 0
     ordered_pricing = sorted(sku_prices.items(), key=lambda x: x[1], reverse=True)
-    
+
     for group in group_discounts_load:
         count = 0
         for product in skus:
@@ -205,6 +205,7 @@ def check_group_discounts(skus: str):
                 basket_temp.replace(product, '', 1)
         if count > group['count']:
             charger = int(count/group['count']) * group['price']
+            bill += charger
 
 
             return group['price']
@@ -226,5 +227,6 @@ if __name__ == '__main__':
     # print(checkout("FFF"))  # 20
     # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
 
 
