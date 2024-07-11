@@ -7,7 +7,8 @@ sku_prices = {
     'B': 30,
     'C': 20,
     'D': 15,
-    'E': 40
+    'E': 40,
+    'F': 10
 }
 
 promotions = """
@@ -36,6 +37,11 @@ free_products = """
         "sku": "E",
         "amount": 2,
         "free_product": "B"
+    },
+    {
+        "sku": "F",
+        "amount": 2,
+        "free_product": "F"
     }
 ]
 """
@@ -103,16 +109,21 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
 
 
 if __name__ == '__main__':
-    print(checkout("AAAAA")) # 200
-    print(checkout("AAAAAA")) # 250
-    print(checkout("AAAAAAA")) # 300
-    print(checkout("AAA"))  # 130
-    print(checkout("AAAA"))  # 180
-    print(checkout("AAAAAAAA"))  # 330
-    print(checkout("AAAABBEEE"))  # 330
-    print(checkout("AAAAAAAAAA"))  # 400
-    print(checkout("EEEEBB")) # 160
-    print(checkout("BEBEEE")) # 160
+    # print(checkout("AAAAA")) # 200
+    # print(checkout("AAAAAA")) # 250
+    # print(checkout("AAAAAAA")) # 300
+    # print(checkout("AAA"))  # 130
+    # print(checkout("AAAA"))  # 180
+    # print(checkout("AAAAAAAA"))  # 330
+    # print(checkout("AAAABBEEE"))  # 330
+    # print(checkout("AAAAAAAAAA"))  # 400
+    # print(checkout("EEEEBB")) # 160
+    # print(checkout("BEBEEE")) # 160
+    print(checkout("FF")) # 20
+    print(checkout("FFF")) # 20
+    print(checkout("FFFF")) # 30
+
+
 
 
 
