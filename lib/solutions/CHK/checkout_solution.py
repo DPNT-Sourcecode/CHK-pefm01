@@ -65,7 +65,7 @@ def count_basket(basket: dict) -> int:
 def apply_promotions(basket: dict, bill: int) -> int:
     actual_promotions = json.loads(promotions)  # loading current promotions
     free_promo = json.loads(free_products)  # loading free products
-    basket_for_discounts = basket
+    basket_for_discounts = basket.copy()
     for item in basket:
         bill, basket_for_discounts = apply_discounts(actual_promotions, item, bill, basket_for_discounts)
         bill = apply_free_products(free_promo, item, bill, basket)
@@ -106,3 +106,4 @@ if __name__ == '__main__':
     # print(checkout("AAAA"))  # 180
     # print(checkout("AAAAAAAA"))  # 330
     print(checkout("AAAABBEEE"))  # 330
+
