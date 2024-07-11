@@ -199,14 +199,14 @@ def check_group_discounts(skus: str):
     for item in skus:
         if item in ordered_pricing:
             sku_with_prices[item] = sku_prices[item]
-    ordered_sku_with_prices = dict(sorted(sku_with_prices.items(), key=lambda x: x[1], reverse=True))
+    ordered_sku_with_prices = sorted(sku_with_prices.items(), key=lambda x: x[1], reverse=True)
 
     for group in group_discounts_load:
         count = 0
         for product in ordered_sku_with_prices:
             if product in ordered_sku_with_prices:
                 count += 1
-        if count > group['count']:
+        if count >= group['count']:
             charger = int(count/group['count']) * group['price']
             bill += charger
             for i in range(int(count/group['count'])):
@@ -229,11 +229,3 @@ if __name__ == '__main__':
     # print(checkout("FFF"))  # 20
     # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
-
-
-
-
-
-
-
-
