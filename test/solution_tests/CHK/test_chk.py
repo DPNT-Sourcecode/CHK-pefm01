@@ -4,7 +4,7 @@ from lib.solutions.CHK.checkout_solution import count_basket, apply_promotions, 
 
 class TestChk():
     def test_chk(self):
-        assert count_basket({'A': 4, 'B': 2, 'E': 3}) == 315
+        assert count_basket({'A': 4, 'B': 2, 'E': 3}) == 330
 
 
     def check_full_solution(self):
@@ -22,7 +22,8 @@ class TestChk():
         # assert checkout("FFF") == 20
         # assert checkout("FFFF") == 30
 
-    # def test_chk_apply_promotion(selfs):
-    #     assert apply_promotions({'A': 4, 'B': 2, 'E': 3}) == 315
+    def test_chk_apply_promotion(selfs):
+        assert apply_promotions({'A': 4, 'B': 2, 'E': 3}, 365) == 315
+
 
 
