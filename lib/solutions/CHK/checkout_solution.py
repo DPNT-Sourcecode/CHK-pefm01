@@ -195,10 +195,10 @@ def check_group_discounts(skus: str):
     group_discounts_load = json.loads(group_discounts)
     bill = 0
     ordered_pricing = dict(sorted(sku_prices.items(), key=lambda x: x[1], reverse=True))
-    sku_with_prices = {}
+    sku_with_prices = []
     for item in skus:
         if item in ordered_pricing:
-            sku_with_prices[item] = sku_prices[item]
+            sku_with_prices.append((item=item, price=sku_prices[item]))
     ordered_sku_with_prices = sorted(sku_with_prices.items(), key=lambda x: x[1], reverse=True)
 
     for group in group_discounts_load:
@@ -229,3 +229,4 @@ if __name__ == '__main__':
     # print(checkout("FFF"))  # 20
     # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
