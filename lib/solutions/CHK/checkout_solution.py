@@ -193,16 +193,20 @@ def apply_free_products(free_promo: json, item: object, bill: int, basket: dict)
 
 def check_group_discounts(skus: str):
     group_discounts_load = json.loads(group_discounts)
+    bill = 0
     ordered_pricing = sorted(sku_prices.items(), key=lambda x: x[1], reverse=True)
     for group in group_discounts_load:
-        count = group['count']
+        count = 0
         for product in skus:
             basket_temp = skus
             if product in basket_temp:
-                count -= 1
-                basket_temp.
+                count += 1
+                basket_temp.replace(product, '', 1)
+        if count > group['count']:
+            charger = int(count/group['count']) * group['price']
 
-                return group['price']
+
+            return group['price']
 
 
 
@@ -221,3 +225,4 @@ if __name__ == '__main__':
     # print(checkout("FFF"))  # 20
     # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
