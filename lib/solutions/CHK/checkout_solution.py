@@ -197,7 +197,7 @@ def check_group_discounts(skus: str):
     ordered_pricing = dict(sorted(sku_prices.items(), key=lambda x: x[1], reverse=True))
     sku_with_prices = []
     for item in skus:
-        if item in ordered_pricing:
+        if item in sku_prices:
             sku_with_prices.append((item, sku_prices[item]))
     ordered_sku_with_prices = sorted(sku_with_prices, key=lambda x: x[1], reverse=True)
 
@@ -231,6 +231,7 @@ if __name__ == '__main__':
     # print(checkout("FFF"))  # 20
     # print(checkout("FFFF"))  # 30
     print(checkout("XYZZZXY"))
+
 
 
 
