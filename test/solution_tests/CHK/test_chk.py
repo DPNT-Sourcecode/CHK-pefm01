@@ -1,6 +1,11 @@
-from solutions.SUM import sum_solution
+
+from lib.solutions.CHK.checkout_solution import count_basket, apply_promotions, apply_discounts
 
 
-class TestSum():
-    def test_sum(self):
-        assert sum_solution.compute(1, 2) == 3
+class TestChk():
+    def test_chk(self):
+        assert count_basket({'A': 4, 'B': 2, 'E': 3}) == 315
+
+    def test_chk_apply_promotion(selfs):
+        assert apply_promotions()
+
